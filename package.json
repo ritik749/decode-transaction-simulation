@@ -1,0 +1,29 @@
+{
+  "name": "decode-transaction-simulation",
+  "version": "1.0.0",
+  "description": "An npm package to decode web3 transaction using simulation",
+  "main": "src/index.ts",
+  "module": "commonjs",
+  "scripts": {
+    "compile": "tsc",
+    "start": "npm run compile && node build/index.js",
+    "test": "npm run test"
+  },
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/ritik749/decode-transaction-simulation.git"
+  },
+  "keywords": [
+    "npm"
+  ],
+  "author": "Ritik Kumar",
+  "license": "Apache-2.0",
+  "bugs": {
+    "url": "https://github.com/ritik749/decode-transaction-simulation/issues"
+  },
+  "homepage": "https://github.com/ritik749/decode-transaction-simulation#readme",
+  "dependencies": {
+    "axios": "^1.7.2",
+    "dotenv": "^16.4.5"
+  }
+}
