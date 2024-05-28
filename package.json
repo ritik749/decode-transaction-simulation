@@ -25,6 +25,7 @@
   "homepage": "https://github.com/ritik749/decode-transaction-simulation#readme",
   "dependencies": {
     "axios": "^1.7.2",
+    "decode-transaction-simulation": "^1.0.0",
     "dotenv": "^16.4.5"
   },
   "devDependencies": {
