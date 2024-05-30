@@ -11,15 +11,16 @@ __Error Handling__: Provides informative error messages in case of decoding issu
 
 ## Installation ##
 Install the package using *npm*:
-```` 
+``
 npm install decode-transaction-simulation
 
-````
+``
 
 ### Usage ###
 __Step 1:__ Import the Class
 
 Import the Decoder class in your JavaScript or TypeScript file:
+
 ``
 import Decoder from 'decode-transaction-simulation';
 
