@@ -1,12 +1,12 @@
-## decode-transaction-simulation ##
+# decode-transaction-simulation #
 ### Overview ###
 
 The **decode-transaction-simulation** package helps you decode transaction data from the Tenderly API and extract information about asset changes.
 
-#### Features ####
-**Decode Tenderly Transaction Data**: Simplifies decoding transaction data retrieved from the Tenderly API.
-**Identify Asset Changes**: Analyzes transactions to identify token transfers (inflow/outflow) and their details.
-**Error Handling**: Provides informative error messages in case of decoding issues or API errors.
+## Features ##
+__Decode Tenderly Transaction Data__: Simplifies decoding transaction data retrieved from the Tenderly API.
+__Identify Asset Changes__: Analyzes transactions to identify token transfers (inflow/outflow) and their details.
+__Error Handling__: Provides informative error messages in case of decoding issues or API errors.
 
 
 ## Installation ##
