@@ -1,7 +1,7 @@
 # decode-transaction-simulation #
 ### Overview ###
 
-The **decode-transaction-simulation** package helps you decode transaction data from the Tenderly API and extract information about asset changes.
+The **decode-transaction-simulation** package helps you decode transaction data from the Tenderly API and extract information about __asset changes__.
 
 ## Features ##
 __Decode Tenderly Transaction Data__: Simplifies decoding transaction data retrieved from the Tenderly API.<br/>
