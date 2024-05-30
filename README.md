@@ -1,17 +1,17 @@
-decode-transaction-simulation - NPM Package Readme
-Overview
-The decode-transaction-simulation package helps you decode transaction data from the Tenderly API and extract information about asset changes.
+## decode-transaction-simulation ##
+### Overview ###
 
-Features
-Decode Tenderly Transaction Data: Simplifies decoding transaction data retrieved from the Tenderly API.
-Identify Asset Changes: Analyzes transactions to identify token transfers (inflow/outflow) and their details.
-Error Handling: Provides informative error messages in case of decoding issues or API errors.
-Installation
-Install the package using npm:
+The **decode-transaction-simulation** package helps you decode transaction data from the Tenderly API and extract information about asset changes.
 
-bash
-Copy code
-npm install decode-transaction-simulation
+#### Features ####
+**Decode Tenderly Transaction Data**: Simplifies decoding transaction data retrieved from the Tenderly API.
+**Identify Asset Changes**: Analyzes transactions to identify token transfers (inflow/outflow) and their details.
+**Error Handling**: Provides informative error messages in case of decoding issues or API errors.
+
+
+## Installation ##
+Install the package using *npm*:
+```` npm install decode-transaction-simulation ````
 Usage
 Step 1: Import the Class
 Import the Decoder class in your JavaScript or TypeScript file:
