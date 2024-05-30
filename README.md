@@ -16,7 +16,7 @@ npm install decode-transaction-simulation
 
 ```
 
-### Usage ###
+## Usage
 __Step 1:__ Import the Class
 
 Import the Decoder class in your JavaScript or TypeScript file:
@@ -27,7 +27,7 @@ import Decoder from 'decode-transaction-simulation';
 ```
 __Step 2:__ Provide Tenderly Credentials
 
-## Getting Tenderly API Keys, Project, and Account Slug
+### Getting Tenderly API Keys, Project, and Account Slug
 
 __Sign Up on Tenderly:__ <br/>
 
@@ -121,9 +121,9 @@ The decodeData method resolves with an object containing information about the t
   }
 }
 ```
-__type:__ Indicates the type of transaction (e.g., "Smart contract Execution" or details about token transfers).
-__tokenIn (optional):__ If tokens are transferred into the address, details about the incoming token (name, symbol, amount, etc.) are provided.
-__tokenOut (optional):__ If tokens are transferred out of the address, details about the outgoing token (name, symbol, amount, etc.) are provided.
+__type:__ Indicates the type of transaction (e.g., "Smart contract Execution" or details about token transfers). <br/>
+__tokenIn (optional):__ If tokens are transferred into the address, details about the incoming token (name, symbol, amount, etc.) are provided. <br/>
+__tokenOut (optional):__ If tokens are transferred out of the address, details about the outgoing token (name, symbol, amount, etc.) are provided. <br/>
 
 ## Contributing
 
