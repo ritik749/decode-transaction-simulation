@@ -28,12 +28,18 @@ import Decoder from 'decode-transaction-simulation';
 __Step 2:__ Provide Tenderly Credentials
 
 ## Getting Tenderly API Keys, Project, and Account Slug
+
 __Sign Up on Tenderly:__ <br/>
+
 Visit [Tenderly Registration](https://dashboard.tenderly.co/register) to sign up. <br/>
+
 __Access Settings:__ <br/>
+
 After logging in, navigate to the dashboard.
 At the bottom of the left sidebar, you will find the Settings option.<br/>
+
 __Locate API Keys and Slugs:__ <br/>
+
 In the Settings section, you will find your personalized API keys, account slug, and project slug. <br/>
 You need your Tenderly account details to use the API. Create a .env file in your project root and add the following environment variables:
 
@@ -41,7 +47,6 @@ You need your Tenderly account details to use the API. Create a .env file in you
 TENDERLY_ACCOUNT_SLUG=your_account_slug
 TENDERLY_PROJECT_SLUG=your_project_slug
 TENDERLY_ACCESS_KEY=your_access_key
-
 ```
 
 __Step 3:__ Instantiate the Decoder
@@ -59,7 +64,6 @@ const provider = {
 };
 
 const decoder = new Decoder(provider);
-
 ```
 __Step 4:__ Decode a Transaction
 Create a transaction object and decode the transaction data:
@@ -83,7 +87,6 @@ decoder.decodeData(transaction)
   .catch(err => {
     console.error(err); // Handle errors
   });
-
 ````
 Note: Replace the placeholder values in the transaction object with your actual transaction data.
 
@@ -92,23 +95,38 @@ The decodeData method resolves with an object containing information about the t
 
 ``` 
 {
-  "type": "Smart contract Execution" // or details about token transfers
+  "type": "Trade" // or details about token transfers
   "tokenIn": {
     "name": "Token Name",
     "symbol": "Token Symbol",
-    "amount": "Token Amount"
+    "amount": "Token Amount",
+    "decimal": "Token Decimal",
+    "token_address": "Token Address",
+    "type": "Token type",  
+    "standard": "Token Standard",
+    "dollarValue": "Token DollarValue",
+    "image":"Token Image"
+
   },
   "tokenOut": {
-    "name": "Token Name",
+     "name": "Token Name",
     "symbol": "Token Symbol",
-    "amount": "Token Amount"
+    "amount": "Token Amount",
+    "decimal": "Token Decimal",
+    "token_address": "Token Address",
+    "type": "Token type",  
+    "standard": "Token Standard",
+    "dollarValue": "Token DollarValue",
+    "image":"Token Image"
   }
 }
 ```
-type: Indicates the type of transaction (e.g., "Smart contract Execution" or details about token transfers).
-tokenIn (optional): If tokens are transferred into the address, details about the incoming token (name, symbol, amount, etc.) are provided.
-tokenOut (optional): If tokens are transferred out of the address, details about the outgoing token (name, symbol, amount, etc.) are provided.
-Contributing
+__type:__ Indicates the type of transaction (e.g., "Smart contract Execution" or details about token transfers).
+__tokenIn (optional):__ If tokens are transferred into the address, details about the incoming token (name, symbol, amount, etc.) are provided.
+__tokenOut (optional):__ If tokens are transferred out of the address, details about the outgoing token (name, symbol, amount, etc.) are provided.
+
+## Contributing
+
 We welcome contributions to this package! Please refer to the contributing guidelines (to be added in the future) for details on how to submit pull requests.
 
-This layout should make the readme more readable and structured, guiding users step-by-step on how to use the package and what to expect as output.
+
