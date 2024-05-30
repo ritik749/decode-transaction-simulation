@@ -12,26 +12,25 @@ __Error Handling__: Provides informative error messages in case of decoding issu
 ## Installation ##
 Install the package using *npm*:
 ```` npm install decode-transaction-simulation ````
-Usage
-Step 1: Import the Class
-Import the Decoder class in your JavaScript or TypeScript file:
 
-javascript
-Copy code
-import Decoder from 'decode-transaction-simulation';
+### Usage###
+Step 1: Import the Class
+
+Import the Decoder class in your JavaScript or TypeScript file:
+`` import Decoder from 'decode-transaction-simulation';``
 Step 2: Provide Tenderly Credentials
+
 You need your Tenderly account details to use the API. Create a .env file in your project root and add the following environment variables:
 
-makefile
-Copy code
 TENDERLY_ACCOUNT_SLUG=your_account_slug
 TENDERLY_PROJECT_SLUG=your_project_slug
 TENDERLY_ACCESS_KEY=your_access_key
+
 Step 3: Instantiate the Decoder
+
 Load the environment variables and create an instance of Decoder:
 
-javascript
-Copy code
+```
 import dotenv from 'dotenv';
 dotenv.config(); // Load environment variables
 
@@ -42,6 +41,8 @@ const provider = {
 };
 
 const decoder = new Decoder(provider);
+
+```
 Step 4: Decode a Transaction
 Create a transaction object and decode the transaction data:
 
