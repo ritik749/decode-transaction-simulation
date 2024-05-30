@@ -11,22 +11,30 @@ __Error Handling__: Provides informative error messages in case of decoding issu
 
 ## Installation ##
 Install the package using *npm*:
-```` npm install decode-transaction-simulation ````
+```` 
+npm install decode-transaction-simulation
 
-### Usage###
-Step 1: Import the Class
+````
+
+### Usage ###
+__Step 1:__ Import the Class
 
 Import the Decoder class in your JavaScript or TypeScript file:
-`` import Decoder from 'decode-transaction-simulation';``
-Step 2: Provide Tenderly Credentials
+``
+import Decoder from 'decode-transaction-simulation';
+
+``
+__Step 2:__ Provide Tenderly Credentials
 
 You need your Tenderly account details to use the API. Create a .env file in your project root and add the following environment variables:
-
+``
 TENDERLY_ACCOUNT_SLUG=your_account_slug
 TENDERLY_PROJECT_SLUG=your_project_slug
 TENDERLY_ACCESS_KEY=your_access_key
 
-Step 3: Instantiate the Decoder
+``
+
+__Step 3:__ Instantiate the Decoder
 
 Load the environment variables and create an instance of Decoder:
 
@@ -43,11 +51,10 @@ const provider = {
 const decoder = new Decoder(provider);
 
 ```
-Step 4: Decode a Transaction
+__Step 4:__ Decode a Transaction
 Create a transaction object and decode the transaction data:
 
-javascript
-Copy code
+````
 const transaction = {
   network_id: 1, // Chain ID (e.g., 1 for Ethereum mainnet)
   from: '0x...', // Sender address
@@ -66,13 +73,14 @@ decoder.decodeData(transaction)
   .catch(err => {
     console.error(err); // Handle errors
   });
+
+````
 Note: Replace the placeholder values in the transaction object with your actual transaction data.
 
-Decoded Data Format
+### Decoded Data Format ###
 The decodeData method resolves with an object containing information about the transaction:
 
-json
-Copy code
+``` 
 {
   "type": "Smart contract Execution" // or details about token transfers
   "tokenIn": {
@@ -86,6 +94,7 @@ Copy code
     "amount": "Token Amount"
   }
 }
+```
 type: Indicates the type of transaction (e.g., "Smart contract Execution" or details about token transfers).
 tokenIn (optional): If tokens are transferred into the address, details about the incoming token (name, symbol, amount, etc.) are provided.
 tokenOut (optional): If tokens are transferred out of the address, details about the outgoing token (name, symbol, amount, etc.) are provided.
