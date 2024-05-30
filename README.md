@@ -1,56 +1,139 @@
-decode-transaction-simulation - NPM Package Readme This is the readme for the decode-transaction-simulation npm package. This package helps you decode transaction data from the Tenderly API and extract information about asset changes.
+# decode-transaction-simulation
 
-Features
-Decode Tenderly Transaction Data: Simplifies decoding transaction data retrieved from the Tenderly API.
-Identify Asset Changes: Analyzes transactions to identify token transfers (inflow/outflow) and their details.
-Error Handling: Provides informative error messages in case of decoding issues or API errors.
+### Overview
 
-Installation
-Install the package using npm:
+The **decode-transaction-simulation** package helps you decode transaction data from the Tenderly API and extract information about **asset changes**.
 
-Bash
+## Features
+
+**Decode Tenderly Transaction Data**: Simplifies decoding transaction data retrieved from the Tenderly API.<br/>
+**Identify Asset Changes**: Analyzes transactions to identify token transfers (inflow/outflow) and their details.<br/>
+**Error Handling**: Provides informative error messages in case of decoding issues or API errors.<br/>
+
+## Installation
+
+Install the package using _npm_:
+
+```
 npm install decode-transaction-simulation
 
-Usage
+```
 
-Import the Class: JavaScript import Decoder from 'decode-transaction-simulation';
-Provide Tenderly Credentials: You'll need your Tenderly account details to use the API.
-Create a .env file in your project root and add the following environment variables:
+## Usage
 
+**Step 1:** Import the Class
+
+Import the Decoder class in your JavaScript or TypeScript file:
+
+```
+import Decoder from 'decode-transaction-simulation';
+
+```
+
+**Step 2:** Provide Tenderly Credentials
+
+### Getting Tenderly API Keys, Project, and Account Slug
+
+**Sign Up on Tenderly:** <br/>
+
+Visit [Tenderly Registration](https://dashboard.tenderly.co/register) to sign up. <br/>
+
+**Access Settings:** <br/>
+
+After logging in, navigate to the dashboard.
+At the bottom of the left sidebar, you will find the Settings option.<br/>
+
+**Locate API Keys and Slugs:** <br/>
+
+In the Settings section, you will find your personalized API keys, account slug, and project slug. <br/>
+You need your Tenderly account details to use the API. Create a .env file in your project root and add the following environment variables:
+
+```
 TENDERLY_ACCOUNT_SLUG=your_account_slug
 TENDERLY_PROJECT_SLUG=your_project_slug
 TENDERLY_ACCESS_KEY=your_access_key
-Instantiate the Decoder: JavaScript dotenv.config(); // Load environment variables
+```
 
-const provider = { TENDERLY_ACCOUNT_SLUG: process.env.TENDERLY_ACCOUNT_SLUG, TENDERLY_PROJECT_SLUG: process.env.TENDERLY_PROJECT_SLUG, TENDERLY_ACCESS_KEY: process.env.TENDERLY_ACCESS_KEY, };
+**Step 3:** Instantiate the Decoder
 
-const decoder = new Decoder(provider);
+Load the environment variables and create an instance of Decoder:
 
-Decode a Transaction: JavaScript
-const transaction = {
-network_id: 1, // Chain ID (e.g., 1 for Ethereum mainnet)
-from: '0x...', // Sender address
-to: '0x...', // Receiver address
-input: '0x...',// input data
-gas: 21000, // Gas limit
-gas_price: 1000000000, // Gas price (in Wei)
-value: 0, // Transaction value (in Wei)
-simulation_type: 'quick', // Optional simulation type ('quick' or 'full')
+```
+import dotenv from 'dotenv';
+dotenv.config(); // Load environment variables
+
+const provider = {
+  TENDERLY_ACCOUNT_SLUG: process.env.TENDERLY_ACCOUNT_SLUG,
+  TENDERLY_PROJECT_SLUG: process.env.TENDERLY_PROJECT_SLUG,
+  TENDERLY_ACCESS_KEY: process.env.TENDERLY_ACCESS_KEY,
 };
 
-decoder.decodeData(transaction) .then(data => {
-console.log(data); // data will contain information about token transfers
-(if any) // or indicate smart contract execution without token involvement. })
-.catch(err => {
-console.error(err); // Handle errors during decoding or API calls
-});
+const decoder = new Decoder(provider);
+```
+
+**Step 4:** Decode a Transaction
+Create a transaction object and decode the transaction data:
+
+```
+const transaction = {
+  network_id: 1, // Chain ID (e.g., 1 for Ethereum mainnet)
+  from: '0x...', // Sender address
+  to: '0x...', // Receiver address
+  input: '0x...', // Input data
+  gas: 21000, // Gas limit
+  gas_price: 1000000000, // Gas price (in Wei)
+  value: 0, // Transaction value (in Wei)
+  simulation_type: 'quick', // Optional simulation type ('quick' or 'full')
+};
+
+decoder.decodeData(transaction)
+  .then(data => {
+    console.log(data); // Output decoded data
+  })
+  .catch(err => {
+    console.error(err); // Handle errors
+  });
+```
 
 Note: Replace the placeholder values in the transaction object with your actual transaction data.
 
-Decoded Data Format The decodeData method resolves with an object containing information about the transaction:
+### Decoded Data Format
 
-type: Indicates the type of transaction (e.g., "Smart contract Execution" or details about token transfers).
+The decodeData method resolves with an object containing information about the transaction:
 
-tokenIn (optional): If tokens are transferred into the address, details about the incoming token (name, symbol, amount, etc.) are provided.
+```
+{
+  "type": "Trade" // or details about token transfers
+  "tokenIn": {
+    "name": "Token Name",
+    "symbol": "Token Symbol",
+    "amount": "Token Amount",
+    "decimal": "Token Decimal",
+    "token_address": "Token Address",
+    "type": "Token type",
+    "standard": "Token Standard",
+    "dollarValue": "Token DollarValue",
+    "image":"Token Image"
 
-tokenOut (optional): If tokens are transferred out of the address, details about the outgoing token (name, symbol, amount, etc.) are provided. Contributing We welcome contributions to this package! Please refer to the contributing guidelines (to be added in the future) for details on how to submit pull requests.
+  },
+  "tokenOut": {
+     "name": "Token Name",
+    "symbol": "Token Symbol",
+    "amount": "Token Amount",
+    "decimal": "Token Decimal",
+    "token_address": "Token Address",
+    "type": "Token type",
+    "standard": "Token Standard",
+    "dollarValue": "Token DollarValue",
+    "image":"Token Image"
+  }
+}
+```
+
+**type:** Indicates the type of transaction (e.g., "Smart contract Execution" or details about token transfers). <br/>
+**tokenIn (optional):** If tokens are transferred into the address, details about the incoming token (name, symbol, amount, etc.) are provided. <br/>
+**tokenOut (optional):** If tokens are transferred out of the address, details about the outgoing token (name, symbol, amount, etc.) are provided. <br/>
+
+## Contributing
+
+We welcome contributions to this package! Please refer to the contributing guidelines (to be added in the future) for details on how to submit pull requests.

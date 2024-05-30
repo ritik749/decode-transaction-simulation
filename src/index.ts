@@ -43,48 +43,54 @@ export default class Decoder {
         let rsp = resp.data;
 
         if (typeof rsp?.transaction?.error_message == 'string') {
-          reject({ isError: true, error_message: rsp?.transaction?.error_message, tokenIn: false, tokenOut: false });
+          reject({ isError: true, error_message: rsp?.transaction?.error_message, tokenIn: null, tokenOut: null });
         } else if (rsp?.transaction?.transaction_info?.asset_changes == null) {
-          resolve({ type: 'Smart contract Execution', tokenIn: false, tokenOut: false });
+          resolve({ type: 'Smart contract Execution', tokenIn: null, tokenOut: null });
         } else {
           let asset = rsp?.transaction?.transaction_info?.asset_changes;
-          let assestArray: any = { tokenIn: false, tokenOut: false };
+          let assestArray: any = { tokenIn: null, tokenOut: null };
           if (asset?.length > 0) {
             asset.map((as: any) => {
               if (as?.type == 'Transfer') {
                 if (as?.from?.toUpperCase() == trnx?.from?.toUpperCase()) {
                   assestArray = {
                     ...assestArray,
-                    tokenInName: as?.token_info?.name,
-                    tokenInDecimal: as?.token_info?.decimals,
-                    tokenInSymbol: as?.token_info?.symbol,
-                    tokenInAmount: as?.amount,
-                    tokenInImage: as?.token_info?.logo,
-                    tokenInDollarValueOfAmount: parseFloat(as?.dollar_value).toFixed(6),
-                    tokenInAddress: as?.token_info?.contract_address,
-                    tokenInType: as?.token_info?.type,
-                    tokenInStandard: as?.token_info?.standard,
-                    tokenIn: true,
+                    tokenIn: {
+                      name: as?.token_info?.name,
+                      decimal: as?.token_info?.decimals,
+                      symbol: as?.token_info?.symbol,
+                      amount: as?.amount,
+                      image: as?.token_info?.logo,
+                      dollarValue: parseFloat(as?.dollar_value).toFixed(6),
+                      token_address: as?.token_info?.contract_address,
+                      type: as?.token_info?.type,
+                      standard: as?.token_info?.standard,
+                    },
                   };
                 } else if (as?.to?.toUpperCase() == trnx?.from?.toUpperCase()) {
                   assestArray = {
                     ...assestArray,
-                    tokenOutName: as?.token_info?.name,
-                    tokenOutDecimal: as?.token_info?.decimals,
-                    tokenOutSymbol: as?.token_info?.symbol,
-                    tokenOutAmount: as?.amount,
-                    tokenOutImage: as?.token_info?.logo,
-                    tokenOutDollarValueOfAmount: parseFloat(as?.dollar_value).toFixed(6),
-                    tokenOutAddress: as?.token_info?.contract_address,
-                    tokenOutType: as?.token_info?.type,
-                    tokenOutStandard: as?.token_info?.standard,
-                    tokenOut: true,
+                    tokenOut: {
+                      name: as?.token_info?.name,
+                      decimal: as?.token_info?.decimals,
+                      symbol: as?.token_info?.symbol,
+                      amount: as?.amount,
+                      image: as?.token_info?.logo,
+                      dollarValue: parseFloat(as?.dollar_value).toFixed(6),
+                      token_address: as?.token_info?.contract_address,
+                      type: as?.token_info?.type,
+                      standard: as?.token_info?.standard,
+                    },
                   };
                 }
               }
             });
 
-            resolve(assestArray);
+            if (assestArray.tokenIn && assestArray.tokenOut) {
+              resolve({ type: 'Trade', ...assestArray });
+            } else {
+              resolve({ type: 'Transaction', ...assestArray });
+            }
           } else {
             reject({ isError: true });
           }
@@ -96,24 +102,3 @@ export default class Decoder {
     });
   }
 }
-
-//type
-
-// {
-//   "amount": "1.637308753101955063",
-//   "dollar_value": "1.6366586980746840233",
-//   "from": "0x42bec8d271b0df5a9497cb670a9a0d0deb65ddda",
-//   "raw_amount": "1637308753101955063",
-//   "to": "0x172fcd41e0913e95784454622d1c3724f546f849",
-//   "token_info": {
-//     "contract_address": "0x55d398326f99059ff775485246999027b3197955",
-//     "decimals": 18,
-//     "dollar_value": "0.9996029734611511",
-//     "logo": "https://assets.coingecko.com/coins/images/35021/large/USDT.png?1707233575",
-//     "name": "Binance Bridged USDT (BNB Smart Chain)",
-//     "standard": "ERC20",
-//     "symbol": "bsc-usd",
-//     "type": "Fungible"
-//   },
-//   "type": "Transfer"
-// },
