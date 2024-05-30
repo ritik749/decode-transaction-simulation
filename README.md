@@ -4,9 +4,9 @@
 The **decode-transaction-simulation** package helps you decode transaction data from the Tenderly API and extract information about asset changes.
 
 ## Features ##
-__Decode Tenderly Transaction Data__: Simplifies decoding transaction data retrieved from the Tenderly API.
-__Identify Asset Changes__: Analyzes transactions to identify token transfers (inflow/outflow) and their details.
-__Error Handling__: Provides informative error messages in case of decoding issues or API errors.
+__Decode Tenderly Transaction Data__: Simplifies decoding transaction data retrieved from the Tenderly API.<br/>
+__Identify Asset Changes__: Analyzes transactions to identify token transfers (inflow/outflow) and their details.<br/>
+__Error Handling__: Provides informative error messages in case of decoding issues or API errors.<br/>
 
 
 ## Installation ##
@@ -27,7 +27,16 @@ import Decoder from 'decode-transaction-simulation';
 ```
 __Step 2:__ Provide Tenderly Credentials
 
+## Getting Tenderly API Keys, Project, and Account Slug
+__Sign Up on Tenderly:__ <br/>
+Visit [Tenderly Registration](https://dashboard.tenderly.co/register) to sign up. <br/>
+__Access Settings:__ <br/>
+After logging in, navigate to the dashboard.
+At the bottom of the left sidebar, you will find the Settings option.<br/>
+__Locate API Keys and Slugs:__ <br/>
+In the Settings section, you will find your personalized API keys, account slug, and project slug. <br/>
 You need your Tenderly account details to use the API. Create a .env file in your project root and add the following environment variables:
+
 ```
 TENDERLY_ACCOUNT_SLUG=your_account_slug
 TENDERLY_PROJECT_SLUG=your_project_slug
